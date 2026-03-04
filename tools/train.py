@@ -210,6 +210,10 @@ def main():
         test_cfg=cfg.get('test_cfg'))
     model.init_weights()
 
+    if cfg.load_from:
+        from mmcv.runner import load_checkpoint
+        checkpoint = load_checkpoint(model, cfg.load_from, map_location='cuda')
+
     datasets = [build_dataset(cfg.data.train)]
     if len(cfg.workflow) == 2:
         val_dataset = copy.deepcopy(cfg.data.val)
