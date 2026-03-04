@@ -3,7 +3,7 @@
 This repository is used in the [AFaRec System](https://github.com/Jan108/AFaRec) to train and predict YuNet.
 
 ## Reproduction Quicksteps
-Use Python 3.8:
+Clone Repo and use Python 3.8:
 1. Run ```pip install torch==1.8.2 torchvision==0.9.2 torchaudio==0.8.2 --extra-index-url https://download.pytorch.org/whl/lts/1.8/cu111```
 2. Run ```pip install mmcv-full==1.3.17 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.8.0/index.html```
 3. Run ```python setup.py develop```
