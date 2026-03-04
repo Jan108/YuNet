@@ -122,7 +122,6 @@ def main():
 
     model = MMDataParallel(model, device_ids=[0])
     model.eval()
-    results = {}
     output_folder = args.out
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
