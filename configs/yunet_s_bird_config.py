@@ -17,7 +17,7 @@ log_config = dict(
            dict(type='TensorboardLoggerHook')])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-load_from = '/mnt/data/afarec/code/face_detection/YuNet/weights/yunet_n.pth'
+load_from = '/mnt/data/afarec/code/face_detection/YuNet/weights/yunet_s.pth'
 resume_from = None
 workflow = [('train', 1)]
 dataset_type = 'RetinaFaceDataset'
@@ -38,7 +38,7 @@ data = dict(
             dict(type='LoadAnnotations', with_bbox=True, with_keypoints=True),
             dict(
                 type='RandomSquareCrop',
-                crop_choice=[0.5, 0.7, 0.9, 1.1, 1.3, 1.5]),
+                crop_choice=[0.3, 0.45, 0.6, 0.8, 1.0]),
             dict(type='Resize', img_scale=(640, 640), keep_ratio=False),
             dict(type='RandomFlip', flip_ratio=0.5),
             dict(
@@ -105,7 +105,7 @@ model = dict(
     type='YuNet',
     backbone=dict(
         type='YuNetBackbone',
-        stage_channels=[[3, 16, 16], [16, 64], [64, 64], [64, 64], [64, 64],
+        stage_channels=[[3, 16, 16], [16, 32], [32, 64], [64, 64], [64, 64],
                         [64, 64]],
         downsample_idx=[0, 2, 3, 4],
         out_idx=[3, 4, 5]),
@@ -114,7 +114,7 @@ model = dict(
         type='YuNet_Head',
         num_classes=1,
         in_channels=64,
-        shared_stacked_convs=1,
+        shared_stacked_convs=0,
         stacked_convs=0,
         feat_channels=64,
         prior_generator=dict(

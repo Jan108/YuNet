@@ -135,22 +135,7 @@ def main():
         result = result[0][0]
         img_metas = data['img_metas'][0].data[0][0]
         filepath = img_metas['ori_filename']
-        # det_scale = img_metas['scale_factor'][0]
 
-        # _vec = filepath.split('/')
-        # print(_vec)
-        # pa, pb = _vec[-2], _vec[1]
-        # if pa not in results:
-        #     results[pa] = {}
-        # xywh = result.copy()
-        # w = xywh[:, 2] - xywh[:, 0]
-        # h = xywh[:, 3] - xywh[:, 1]
-        # xywh[:, 2] = w
-        # xywh[:, 3] = h
-
-        # event_name = pa
-        # img_name = pb.rstrip('.jpg')
-        # results[event_name][img_name] = xywh
         if args.save_preds:
             out_dir = os.path.join(output_folder, 'results')
             if not os.path.exists(out_dir):
@@ -158,10 +143,6 @@ def main():
             out_file = os.path.join(out_dir, filepath.replace('jpg', 'txt'))
             boxes = result
             with open(out_file, 'w') as f:
-                # name = '/'.join([pa, pb])
-                # name = filepath
-                # f.write('%s\n' % (name))
-                # f.write('%d\n' % (boxes.shape[0]))
                 for b in range(boxes.shape[0]):
                     box = boxes[b]
                     f.write('%.5f %.5f %.5f %.5f %g\n' %
@@ -170,22 +151,6 @@ def main():
 
         for _ in range(batch_size):
             prog_bar.update()
-    # aps = wider_evaluation(results, gt_path, 0.5)
-
-    # AutoRank('./eval.log').update({
-    #     'config':
-    #     args.config,
-    #     'weight':
-    #     args.checkpoint,
-    #     'score_nms_thresh':
-    #     [cfg.model.test_cfg.score_thr, cfg.model.test_cfg.nms.iou_threshold],
-    #     'APS':
-    #     aps
-    # })
-    #
-    # with open(os.path.join(output_folder, 'aps'), 'w') as f:
-    #     f.write('%f,%f,%f\n' % (aps[0], aps[1], aps[2]))
-    # print('APS:', aps)
 
 
 if __name__ == '__main__':

@@ -1,12 +1,12 @@
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0005)
+optimizer = dict(type='SGD', lr=0.0001, momentum=0.9, weight_decay=0.0005)
 optimizer_config = dict(grad_clip=None)
 
 lr_mult = 8
 lr_config = dict(
     policy='step',
     warmup='linear',
-    warmup_iters=1500,
-    warmup_ratio=0.001,
+    warmup_iters=1000,
+    warmup_ratio=0.01,
     step=[50 * lr_mult, 68 * lr_mult])
 runner = dict(type='EpochBasedRunner', max_epochs=80 * lr_mult)
 
@@ -27,7 +27,7 @@ val_root = '/mnt/data/afarec/data/OAFI_full/images/val'
 img_norm_cfg = dict(mean=[0., 0., 0.], std=[1., 1., 1.], to_rgb=False)
 
 data = dict(
-    samples_per_gpu=16,
+    samples_per_gpu=8,
     workers_per_gpu=4,
     train=dict(
         type='RetinaFaceDataset',
