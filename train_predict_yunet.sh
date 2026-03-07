@@ -2,7 +2,7 @@
 set -eo pipefail
 
 # Yunet-n
-for cls in "all" "bird" "cat" "cat_like" "dog" "dog_like" "horse_like" "small_animals"; do
+for cls in "cat" "cat_like" "dog" "dog_like" "horse_like" "small_animals"; do
   PYTHONPATH='/mnt/data/afarec/code/face_detection/YuNet/':$PYTHONPATH \
   python /mnt/data/afarec/code/face_detection/YuNet/tools/train.py \
   "$(dirname "$0")/configs/yunet_${cls}_config.py" --seed 0 \
