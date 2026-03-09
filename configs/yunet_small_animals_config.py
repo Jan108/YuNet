@@ -17,7 +17,7 @@ log_config = dict(
            dict(type='TensorboardLoggerHook')])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-load_from = '/mnt/data/afarec/code/face_detection/yunet/libfacedetection.train/weights/yunet_n.pth'
+load_from = '/mnt/data/afarec/code/face_detection/YuNet/weights/yunet_n.pth'
 resume_from = None
 workflow = [('train', 1)]
 dataset_type = 'RetinaFaceDataset'
